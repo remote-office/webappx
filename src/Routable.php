@@ -2,7 +2,7 @@
 
 	namespace WebAppX;
 
-	use WebAppX\Interfaces\Container
+	use WebAppX\Interfaces\Container;
 
   use Closure;
   use RuntimeException;

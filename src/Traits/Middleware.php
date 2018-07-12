@@ -2,9 +2,14 @@
 
   namespace WebAppX\Traits;
 
-  use RuntimeException;
+  use WebAppX\Interfaces\Request;
+  use WebAppX\Interfaces\Response;
+
   use LibX\Util\Stack;
-  
+
+  use RuntimeException;
+
+
   trait Middleware
   {
     /********************************************************************************
@@ -22,7 +27,7 @@
    	 * @throws RuntimeException
    	 */
   	protected function initMiddlewareStack($kernel = null)
-   	{   
+   	{
   	  if(!is_null($this->middlewareStack))
       	throw new RuntimeException('MiddlewareStack can only be seeded once.');
 
@@ -48,7 +53,7 @@
    		$next = $this->middlewareStack->first();
 
    		// Add callable to the stack
-  		$this->middlewareStack[] = function(RequestInterface $request, ResponseInterface $response) use ($callable, $next)
+  		$this->middlewareStack[] = function(Request $request, Response $response) use ($callable, $next)
       {
   			$result = call_user_func($callable, $request, $response, $next);
 
@@ -68,7 +73,7 @@
    	 * @param ResponseInterface $response
    	 * @return ResponseInterface
    	 */
-   	protected function callMiddlewareStack(RequestInterface $request, ResponseInterface $response)
+   	protected function callMiddlewareStack(Request $request, Response $response)
    	{
    		if(is_null($this->middlewareStack))
    			$this->initMiddlewareStack();
