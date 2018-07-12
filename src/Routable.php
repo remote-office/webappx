@@ -2,24 +2,26 @@
 
 	namespace WebAppX;
 
+	use WebAppX\Interfaces\Container
+
   use Closure;
   use RuntimeException;
-	
+
 	abstract class Routable
 	{
 		protected $container;
-		
+
 		protected $name;
-		
+
 		protected $pattern;
 		protected $callable;
 		protected $middleware = [];
-		
-		public function setContainer(ContainerInterface $container)
+
+		public function setContainer(Container $container)
 		{
-			$this->container = $container;	
+			$this->container = $container;
 		}
-		
+
 		public function getContainer()
 		{
 			return $this->container;
@@ -29,13 +31,13 @@
 		{
 			return $this->name;
 		}
-		
+
 		public function setName($name)
 		{
 			$this->name = $name;
 		}
-		
-		
+
+
 		public function getPattern()
     {
     	return $this->pattern;
@@ -45,12 +47,12 @@
     {
     	return $this->callable;
     }
-    
+
     public function getMiddleware()
     {
     	return $this->middleware;
     }
-    
+
     /**
      * Prepend middleware to the middleware collection
      *
@@ -64,7 +66,7 @@
       //return $this->addMiddleware(new DeferredCallable($callable, $this->container));
       //return $this->addMiddleware($callable);
     }
-    
+
     /**
      * Resolve a string of the format 'class:method' into a closure that the
      * router can dispatch.
@@ -77,13 +79,13 @@
      */
     protected function resolve($callable)
     {
-			if(!$this->container instanceof ContainerInterface)
+			if(!$this->container instanceof Container)
 				return $callable;
-			
+
       $resolver = $this->container->get('resolver');
 
       return $resolver->resolve($callable);
     }
 	}
-	
+
 ?>

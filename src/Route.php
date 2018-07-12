@@ -2,20 +2,23 @@
 
 	namespace WebAppX;
 
+	use WebAppX\Interfaces\Request;
+	use WebAppX\Interfaces\Response;
+
 	class Route extends Routable
 	{
-		use MiddlewareTrait;
-		
+		use Traits\Middleware;
+
 		protected $methods;
 		protected $groups;
 		protected $arguments;
-		
+
 		public function __construct($methods, $pattern, $callable, $groups = [])
     {
 			$this->methods  = is_string($methods) ? [$methods] : $methods;
 			$this->pattern  = $pattern;
 			$this->callable = $callable;
-			
+
 			$this->groups = $groups;
     }
 
@@ -28,16 +31,16 @@
     {
     	return $this->groups;
     }
-    
+
     public function setArguments($arguments)
     {
     	$this->arguments = $arguments;
     }
 
-    public function __invoke(RequestInterface $request, ResponseInterface $response)
+    public function __invoke(Request $request, Response $response)
     {
       $this->callable = $this->resolve($this->callable);
-    	
+
     	// Route arguments
     	$arguments = [];
 
@@ -56,13 +59,13 @@
      *
      * @return ResponseInterface
      */
-    public function run(RequestInterface $request, ResponseInterface $response)
+    public function run(Request $request, Response $response)
     {
     	// Collect middleware from groups
     	$groupMiddleware = [];
     	foreach($this->getGroups() as $group)
     		$groupMiddleware = array_merge($group->getMiddleware(), $groupMiddleware);
-    	
+
     	// Merge with middleware of route
       $this->middleware = array_merge($this->middleware, $groupMiddleware);
 
@@ -74,5 +77,5 @@
       return $this->callMiddlewareStack($request, $response);
     }
 	}
-	
+
 ?>

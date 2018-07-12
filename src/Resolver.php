@@ -2,13 +2,15 @@
 
 	namespace WebAppX;
 
+	use WebAppX\Interfaces\Container
+
 	final class Resolver
 	{
 		const CALLABLE_PATTERN = '!^([^\:]+)\:([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)$!';
 
 		protected $container;
 
-		public function __construct(ContainerInterface $container)
+		public function __construct(Container $container)
 		{
 			$this->container = $container;
 		}

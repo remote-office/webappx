@@ -2,8 +2,8 @@
 
 	namespace WebAppX\Views;
 
-  use WebAppX\ResponseInterface;
-  
+  use WebAppX\Interfaces\Response;
+
 	class Twig implements \ArrayAccess
 	{
     /**
@@ -59,7 +59,7 @@
     public function fetch($template, $data = [], $cacheId = null)
     {
       $data = array_merge($this->variables, $data);
-            
+
       return $this->environment->render($template, $data);
     }
 
@@ -71,7 +71,7 @@
      * @param  array $data Associative array of template variables
      * @return ResponseInterface
      */
-    public function render(ResponseInterface $response, $template, $data = [])
+    public function render(Response $response, $template, $data = [])
     {
       $response->getBody()->write($this->fetch($template, $data));
 

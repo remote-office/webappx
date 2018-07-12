@@ -7,7 +7,7 @@
 
 	use LibX\Stream\Stream;
 
-	class Request extends Message implements RequestInterface
+	class Request extends Message implements Interfaces\Request
 	{
 		protected $method;
 		protected $uri;

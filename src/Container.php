@@ -10,7 +10,7 @@
    * @author David Betgen <d.betgen@remote-office.nl>
    * @version 1.0
    */
-  class Container implements ArrayAccess, ContainerInterface
+  class Container implements ArrayAccess, Interfaces\Container
   {
     // Array access
     private $values = array();

@@ -4,7 +4,7 @@
 
   use LibX\Stream\StreamInterface;
 
-  abstract class Message implements MessageInterface
+  abstract class Message implements Interfaces\Message
   {
     /**
      * Protocol version

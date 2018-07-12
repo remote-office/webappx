@@ -14,7 +14,7 @@
  * @link https://github.com/php-fig/http-message/blob/master/src/MessageInterface.php
  * @link https://github.com/php-fig/http-message/blob/master/src/ResponseInterface.php
  */
-	class Response extends Message implements ResponseInterface
+	class Response extends Message implements Interfaces\Response
 	{
 	  /**
      * Status code

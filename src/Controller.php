@@ -2,6 +2,8 @@
 
 	namespace WebAppX;
 
+	use WebAppX\Interfaces\Container;
+
 	/**
 	 * Class App
 	 *
@@ -12,7 +14,7 @@
 	{
 		protected $container;
 
-		public function __construct(ContainerInterface $container)
+		public function __construct(Container $container)
 		{
 			$this->container = $container;
 		}

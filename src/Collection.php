@@ -3,7 +3,7 @@
   namespace WebAppX;
 
 
-  class Collection implements CollectionInterface
+  class Collection implements Interfaces\Collection
   {
     /**
      * The source data
