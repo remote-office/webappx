@@ -1,22 +1,21 @@
 {
-    "name": "webappx/webappx",
-    "description": "Fast MVC Framework",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "David Betgen",
-            "email": "d.betgen@remote-office.nl"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {
-        "php": ">=5.6.0",
-        "libx/libx": "*"
-    },
-    "autoload": {
-        "psr-0": {
-            "WebAppX": "src/"
-        }
-    }
+	"name" : "webappx/webappx",
+	"description" : "Fast MVC Framework",
+	"type" : "library",
+	"license" : "MIT",
+	"authors" : [{
+			"name" : "David Betgen",
+			"email" : "d.betgen@remote-office.nl"
+		}
+	],
+	"minimum-stability" : "dev",
+	"require" : {
+		"php" : ">=5.6.0",
+		"libx/libx" : "*"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"WebAppX\\" : "src/"
+		}
+	}
 }
