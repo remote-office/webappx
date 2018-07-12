@@ -1,11 +1,11 @@
 <?php
 
-  namespace WebAppX;
+  namespace WebAppX\Traits;
 
   use RuntimeException;
   use LibX\Util\Stack;
   
-  trait MiddlewareTrait
+  trait Middleware
   {
     /********************************************************************************
      * Middleware methods

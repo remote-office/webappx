@@ -1,8 +1,8 @@
 <?php
 
-  namespace WebAppX;
+  namespace WebAppX\Interfaces;
   
-  interface MessageInterface
+  interface Message
   {
     public function getProtocolVersion();
   }

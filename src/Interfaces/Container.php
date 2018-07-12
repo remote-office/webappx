@@ -1,8 +1,8 @@
 <?php
 
-	namespace WebAppX;
+  namespace WebAppX\Interfaces;
 	
-  interface ContainerInterface
+  interface Container
   {
     /**
      * Finds an entry of the container by its identifier and returns it.

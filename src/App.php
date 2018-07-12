@@ -2,6 +2,10 @@
 
 	namespace WebAppX;
 
+	use WebAppX\Interfaces\Container;
+	use WebAppX\Interfaces\Request;
+	use WebAppX\Interfaces\Response;
+	
   use Closure;
   use Exception;
   use InvalidArgumentException;
@@ -14,20 +18,20 @@
 	 */
   class App
   {
-    use MiddlewareTrait;
+    use Traits\Middleware;
 
     private $container;
 
     /**
      * Construct an App
      *
-     * @param ContainerInterface $container
+     * @param Container $container
      * @throws InvalidArgumentException
      * @return App
      */
-    public function __construct(ContainerInterface $container)
+    public function __construct(Container $container)
     {
-      if(!$container instanceof ContainerInterface)
+      if(!$container instanceof Interfaces\Container)
         throw new \InvalidArgumentException('Expected a ContainerInterface');
 
       $this->container = $container;
@@ -111,7 +115,7 @@
 			echo $response->getBody();
     }
 
-    protected function process(RequestInterface $request, ResponseInterface $response)
+    protected function process(Request $request, Response $response)
     {
     	// Call middleware
     	$response = $this->callMiddlewareStack($request, $response);
@@ -120,7 +124,7 @@
    	}
 
 
-   	public function __invoke(RequestInterface $request, ResponseInterface $response)
+   	public function __invoke(Request $request, Response $response)
    	{
    		$router = $this->container->get('router');
 

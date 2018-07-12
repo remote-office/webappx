@@ -1,8 +1,8 @@
 <?php
 
-  namespace WebAppX;
+  namespace WebAppX\Interfaces;
   
-  interface RequestInterface extends MessageInterface
+  interface Request extends Message
   {
   }
 

@@ -1,6 +1,6 @@
 <?php
 
-  namespace WebAppX;
+  namespace WebAppX\Interfaces;
 
   /**
    * Collection Interface
@@ -8,7 +8,7 @@
    * @package WebAppX
    * @since   1.0
    */
-  interface CollectionInterface extends \ArrayAccess, \Countable, \IteratorAggregate
+  interface Collection extends \ArrayAccess, \Countable, \IteratorAggregate
   {
     public function set($key, $value);
     public function get($key, $default = null);
