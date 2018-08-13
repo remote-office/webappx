@@ -5,7 +5,7 @@
 	use WebAppX\Interfaces\Container;
 	use WebAppX\Interfaces\Request;
 	use WebAppX\Interfaces\Response;
-	
+
   use Closure;
   use Exception;
   use InvalidArgumentException;
@@ -50,6 +50,11 @@
     public function post($pattern, $callable)
     {
     	return $this->map(['POST'], $pattern, $callable);
+    }
+
+    public function patch($pattern, $callable)
+    {
+    	return $this->map(['PATCH'], $pattern, $callable);
     }
 
     public function any($pattern, $callable)

@@ -396,6 +396,17 @@
 			return ($this->getMethod() == 'PUT');
 		}
 
+	 /**
+		 * Checks if request method is a PATCH request
+		 *
+		 * @param void
+		 * @return boolean
+		 */
+		public function isPatch()
+		{
+			return ($this->getMethod() == 'PATCH');
+		}
+
 		/**
 		 * Checks if request method is a DELETE request
 		 *
