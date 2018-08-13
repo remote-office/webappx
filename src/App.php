@@ -51,6 +51,16 @@
     {
     	return $this->map(['POST'], $pattern, $callable);
     }
+    
+    public function put($pattern, $callable)
+    {
+      return $this->map(['PUT'], $pattern, $callable);
+    }
+    
+    public function delete($pattern, $callable)
+    {
+      return $this->map(['DELETE'], $pattern, $callable);
+    }
 
     public function patch($pattern, $callable)
     {

@@ -59,6 +59,18 @@
           return new Resolver($container);
         };
       }
+      
+      if(!isset($container['session']))
+      {
+        /**
+         *
+         * @return SessionInterface
+         */
+        $container['session'] = function($container)
+        {
+          return new Session();
+        };
+      }
     }
   }
 
