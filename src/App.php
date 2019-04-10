@@ -51,12 +51,12 @@
     {
     	return $this->map(['POST'], $pattern, $callable);
     }
-    
+
     public function put($pattern, $callable)
     {
       return $this->map(['PUT'], $pattern, $callable);
     }
-    
+
     public function delete($pattern, $callable)
     {
       return $this->map(['DELETE'], $pattern, $callable);
@@ -125,6 +125,12 @@
 
 				header('Location: ' . $location);
 				exit;
+			}
+
+    	if(!headers_sent())
+			{
+			  foreach($response->getHeaders() as $name => $value)
+          header(sprintf('%s: %s', $name, $value));
 			}
 
 			echo $response->getBody();

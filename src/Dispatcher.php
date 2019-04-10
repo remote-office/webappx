@@ -1,7 +1,7 @@
 <?php
 
   namespace WebAppX;
-  
+
   /**
    * Class Dispatcher
    *
@@ -11,35 +11,35 @@
   class Dispatcher
   {
     protected $callback;
-    
+
     public function __construct(Callable $callback)
     {
       $this->callback = $callback;
     }
-    
+
     public function dispatch($method, $uri)
     {
       $routes = array();
-      
+
       // Init arguments
       $arguments = array();
-      
+
       // Callback
       $callback = $this->callback;
       $callback($routes);
-      
+
       foreach($routes as $route)
       {
         if(in_array($method, $route->getMethods()))
         {
           $pattern = $route->getPattern();
-          
+
           // Convert path to regex
-          $regex = preg_replace('@:[\w]+@','([a-zA-Z0-9_\+\-%]+)', $pattern);
+          $regex = preg_replace('@:[\w]+@','([a-zA-Z0-9_\+\-% ()]+)', $pattern);
           $regex.= '/?(\?.*)?';
-          
+
           $path = trim($_SERVER['REQUEST_URI']);
-          
+
           // Check for a match
           if(preg_match('@^' . $regex . '$@', $path))
           {
@@ -49,7 +49,7 @@
             array_shift($keys);
             // Pop
             $keys = array_pop($keys);
-            
+
             if(count($keys) > 0)
             {
               // Match values to keys
@@ -57,18 +57,18 @@
               {
                 // Shift
                 array_shift($matches);
-                
+
                 // Construct arguments
                 if(count($matches) > 0)
                 {
                   foreach($keys as $index => $key)
                     $arguments[$key] = $matches[$index];
-                    
+
                     $route->setArguments($arguments);
                 }
               }
             }
-            
+
             return $route;
           }
         }
