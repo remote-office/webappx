@@ -116,7 +116,8 @@
 			}
 			catch(Exception $exception)
 			{
-
+			  echo $exception->getMessage();
+			  exit;
 			}
 
 			if($response->getStatus() == 302)
