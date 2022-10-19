@@ -41,7 +41,19 @@
 		public function __construct($path, $settings = [])
     {
     	$this->loader = $this->createLoader(is_string($path) ? [$path] : $path);
-      $this->environment = new \Twig_Environment($this->loader, $settings);
+      $this->environment = new \Twig_Environment($this->loader, $settings);		
+      $this->environment->addExtension(new \Twig_Extensions_Extension_Text());
+
+      // an anonymous function
+      $filter = new \Twig\TwigFilter('stripimg', function ($string) {
+        return preg_replace('/<img[^>]+\>/i', ' (image) ', $string);
+      });
+
+      // Add anonymous custom filter
+      $this->environment->addFilter($filter);
+		
+			
+			
     }
 
     /********************************************************************************
