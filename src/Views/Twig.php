@@ -4,14 +4,6 @@
 
   use WebAppX\Interfaces\Response;
 
-  use Symfony\Component\Asset\Packages;
-  use Symfony\Component\Asset\Package;
-  use Symfony\Component\Asset\PathPackage;
-  use Symfony\Component\Asset\UrlPackage;
-  use Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy;
-  use Symfony\Component\Asset\VersionStrategy\StaticVersionStrategy;
-
-
 	class Twig implements \ArrayAccess
 	{
     /**
@@ -58,24 +50,7 @@
       });
 
       // Add anonymous custom filter
-      $this->environment->addFilter($filter);
-
-      // Add some namespaces
-      $this->loader->addPath('assets', 'assets');
-      $this->loader->addPath('assets/icons', 'icon');
-      $this->loader->addPath($path.'/components', 'component');
-      $this->loader->addPath($path.'/components/filter', 'filter');
-      $this->loader->addPath($path.'/components/menu', 'menu');
-
-      // Twig Assets Functionality
-      $assetsPath = '/assets/';
-      
-      $versionStrategy = new StaticVersionStrategy('v1');
-      $defaultPackage  = new PathPackage($assetsPath, $versionStrategy);
-      $packages        = new Packages($defaultPackage);
-			
-      $this->environment->addExtension(new \Symfony\Bridge\Twig\Extension\AssetExtension($packages));		
-			
+      $this->environment->addFilter($filter);		
     }
 
     /********************************************************************************
